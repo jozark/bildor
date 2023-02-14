@@ -30,9 +30,10 @@ const NewMint: NextPage<NewMintProps> = ({ mint }) => {
   }, [connection, walletAdapter]);
 
   useEffect(() => {
+    console.log(mint, "mint");
     metaplex
       .nfts()
-      .findByMint({ mintAddress: mint })
+      .findByMint({ mintAddress: new PublicKey(mint) })
       .then((nft) => {
         fetch(nft.uri)
           .then((res) => res.json())
